@@ -1,1 +1,2 @@
 dzien dobry
+notatniczek
