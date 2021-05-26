@@ -2,19 +2,19 @@ package EvenOrOdd;
 
 public class EvenOrOdd {
     public static void main(String[] args) {
-        System.out.println(evenOdd(5));
+        System.out.println(isEven(5));
     }
 
-    public static String evenOdd(int numberInput) {
-        String feedback = "";
+    public static boolean isEven(int numberInput) {
+        boolean even = true;
+        boolean odd = false;
         int modulo = numberInput % 2;
         {
             if (modulo == 0) {
-                feedback = "even";
+                return even;
             } else {
-                feedback = "odd";
+                return odd;
             }
-            return feedback;
         }
     }
 }
