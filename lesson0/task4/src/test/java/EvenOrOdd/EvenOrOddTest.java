@@ -9,8 +9,8 @@ public class EvenOrOddTest {
         //given
         int number = 9;
         //when
-        String verificationResult = EvenOrOdd.evenOdd(number);
+        boolean verificationResult = EvenOrOdd.isEven(number);
         //then
-        Assertions.assertEquals("odd", verificationResult);
+        Assertions.assertEquals(false, verificationResult);
     }
 }
