@@ -7,9 +7,10 @@ public class CapitalFormatterTest {
     public void testShouldReturnTextInCapitalLetters(){
 
     //given
-      CapitalFormatter testCapitalFormatter = new CapitalFormatter("Testing out the method");
-    //when
-        String testResult = testCapitalFormatter.formatText(testCapitalFormatter.text);
+        String testText = "testing out the method";
+        CapitalFormatter testCapitalFormatter = new CapitalFormatter();
+        //when
+        String testResult = testCapitalFormatter.formatText(testText);
     //then
         Assertions.assertEquals("TESTING OUT THE METHOD", testResult);
     }

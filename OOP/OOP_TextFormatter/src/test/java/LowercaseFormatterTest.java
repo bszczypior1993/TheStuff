@@ -6,9 +6,10 @@ class LowercaseFormatterTest {
     public void testShouldReturnTextInLowercaseLetters(){
 
         //given
-        LowercaseFormatter testLowercaseFormatter = new LowercaseFormatter("Testing out the method");
+        String testText = "TESTing OuT thE METhoD";
+        LowercaseFormatter testLowercaseFormatter = new LowercaseFormatter();
         //when
-        String testResult = testLowercaseFormatter.formatText(testLowercaseFormatter.text);
+        String testResult = testLowercaseFormatter.formatText(testText);
         //then
         Assertions.assertEquals("testing out the method", testResult);
     }

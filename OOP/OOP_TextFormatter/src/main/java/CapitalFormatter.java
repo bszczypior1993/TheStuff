@@ -1,20 +1,15 @@
 import java.util.Locale;
+import java.lang.String;
 
 public class CapitalFormatter implements TextFormatter{
 
-    public static void main (String[] args){
-        CapitalFormatter capitalFormatter = new CapitalFormatter("Java text formatting task");
-        System.out.println(capitalFormatter.formatText(capitalFormatter.text));
-    }
-
-String text;
-    protected CapitalFormatter(String text){
-        this.text = text;
+    public void main(String[] args){
+        CapitalFormatter capitalFormatter = new CapitalFormatter();
+    System.out.println(capitalFormatter.formatText("java method"));
     }
 
     public String formatText(String text){
-        return text.toUpperCase(Locale.ROOT);
+                return text.toUpperCase(Locale.ROOT);
 
     }
-
 }
