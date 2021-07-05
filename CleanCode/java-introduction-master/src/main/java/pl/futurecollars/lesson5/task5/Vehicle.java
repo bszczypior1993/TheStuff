@@ -1,7 +1,7 @@
 package pl.futurecollars.lesson5.task5;
 
 public class Vehicle {
-    protected boolean enginePresent;
+    protected static boolean enginePresent;
     protected static boolean engineStarted;
 
     protected void startEngine() {
