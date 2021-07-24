@@ -7,7 +7,7 @@ public class EveryOtherLineReader {
     private String filePath;
 
     public static void main(String[] args) {
-        EveryOtherLineReader everyOtherLineReader = new EveryOtherLineReader(".\\data\\data.txt");
+        EveryOtherLineReader everyOtherLineReader = new EveryOtherLineReader("C:/Users/bszcz/OneDrive/data.txt");
         everyOtherLineReader.readEveryOtherLine();
     }
 
