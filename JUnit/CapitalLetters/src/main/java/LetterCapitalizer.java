@@ -4,11 +4,15 @@ public class LetterCapitalizer {
 
 
     public static void main(String[] args) {
-        System.out.println(LetterCapitalizer.capitalizeLetters("barbara szczypior"));
+        System.out.println(LetterCapitalizer.capitalizeLetters(""));
     }
 
     public static String capitalizeLetters(String text) {
-        text = text.toUpperCase();
-        return text;
+        if (!text.isEmpty()) {
+            text = text.toUpperCase();
+            return text;
+        } else {
+            return "no text provided";
+        }
     }
 }
