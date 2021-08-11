@@ -1,41 +1,59 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class OwnListOperator implements OwnList {
 
-    List<Integer> newList = new ArrayList<>();
+    int[] ownList = {1, 2, 3, 4, 5};
 
     @Override
     public int size() {
-        return newList.size();
+        return ownList.length;
     }
 
     @Override
     public boolean isEmpty() {
-        return newList.isEmpty();
+        boolean isEmpty = false;
+        if (ownList.length == 0) {
+            isEmpty = true;
+            return isEmpty;
+        } else {
+            isEmpty = false;
+            return isEmpty;
+        }
     }
 
     @Override
     public void add(Integer element) {
-        newList.add(element);
+        int n = 0;
+        int newList[] = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            newList[i] = ownList[i];
+            newList[n] = element;
+            return;
+        }
     }
 
     @Override
-    public Integer get(int i) {
-        return newList.get(i);
+    public Integer get(int index) {
+        return ownList[index];
     }
 
     @Override
     public void add(int index, Integer element) {
-        if (index <= newList.size()) {
-            newList.add(index, element);
+        int n = 0;
+        int newList[] = new int[index + 1];
+        if (index <= ownList.length) {
+            for (int i = 0; i < ownList.length + 1; i++) {
+                newList[i] = ownList[i];
+                newList[index] = element;
+            }
         } else throw new ArrayIndexOutOfBoundsException();
     }
 
     @Override
     public void remove(int index) {
-        if (index <= newList.size()) {
-            newList.remove(index);
+        if (index <= ownList.length) {
+            for (int i = index; i < ownList.length - 1; i++) {
+                ownList[i] = ownList[i + 1];
+                return;
+            }
         } else throw new ArrayIndexOutOfBoundsException();
     }
 }
