@@ -1,8 +1,19 @@
 public class TrainingProgressCalculator {
 
+    private final int trainingLengthMinutes;
+    private final int caloriesBurnt;
+    private final int calculatePulseRating;
+
     public static void main(String[] args) {
-        TrainingProgressCalculator trainingProgressCalculator = new TrainingProgressCalculator();
-        System.out.println(trainingProgressCalculator.calculateTrainingQuality(12, 12, 500));
+        System.out.println(TrainingProgressCalculator.calculateTrainingQuality(12, 12, 500));
+    }
+
+
+
+    public TrainingProgressCalculator (int trainingLengthMinutes, int caloriesBurnt, int calculatePulseRating){
+        this.trainingLengthMinutes = trainingLengthMinutes;
+        this.caloriesBurnt = caloriesBurnt;
+        this.calculatePulseRating = calculatePulseRating;
     }
 
 
