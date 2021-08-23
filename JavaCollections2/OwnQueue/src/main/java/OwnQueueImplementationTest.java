@@ -21,7 +21,7 @@ class OwnQueueImplementationTest {
     }
 
     @Test
-    void remove() {
+    void shouldRemoveElementFromTheQueue() {
         //given
         OwnQueueImplementation myTestQueue = new OwnQueueImplementation();
         myTestQueue.add(2);
@@ -31,5 +31,20 @@ class OwnQueueImplementationTest {
         int testRemovedValue = myTestQueue.remove();
         //then
         Assertions.assertEquals(2, testRemovedValue);
+    }
+
+    @Test
+    void shouldDisplayElementButNotRemoveIt(){
+        //given
+        OwnQueueImplementation myTestQueue = new OwnQueueImplementation();
+        myTestQueue.add(2);
+        myTestQueue.add(5);
+        myTestQueue.add(1);
+        //when
+        int testDisplayedValue = myTestQueue.element();
+        int testLength = myTestQueue.length;
+        //then
+        Assertions.assertEquals(2, testDisplayedValue);
+        Assertions.assertEquals(3,testLength);
     }
 }

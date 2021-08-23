@@ -55,9 +55,10 @@ return addConfirmation;
         int data = head.data;
         head = head.next;
         return data;}
-    
+
     @Override
     public Integer element() {
-        return null;
+        int data = head.data;
+        return data;
     }
 }
