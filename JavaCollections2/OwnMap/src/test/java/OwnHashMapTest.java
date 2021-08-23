@@ -1,93 +1,77 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.*;
-
 
 class OwnHashMapTest {
 
-    OwnHashMap testOwnHashMap = new OwnHashMap();
-
-    public OwnHashMapTest() {
-        this.testHashMap = new ArrayList<Node>();
-    }
-
-//    public void createTestMap() {
-//        this.testOwnHashMap = new OwnHashMap();
-//        Node testTemp;
-//    }
-    class Node {
-
-        String key;
-        String value;
-
-        public void insert(String key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
-    private Node testTemp;
-   // private List<Node> testHashMap;
-
-    List<Node> testHashMap = Mockito.mock(ArrayList.class);
-    testHashMap.add("one");
-
 
     @Test
-    void shouldReturnTrueIfKeyValueAddedToTheList(String testKey, String testValue) {
+    void shouldReturnAmountOfValuesInTheList() {
         //given
-        testKey = "1";
-        testValue = "2";
+        OwnHashMap testOwnHashMap = new OwnHashMap();
+        testOwnHashMap.put("1", "Basia");
+        testOwnHashMap.put("2", "Cebula");
+        testOwnHashMap.put("3", "Szczypior");
         //when
-        boolean testAddResult = testOwnHashMap.put(testKey, testValue);
+        int testHashMapSize = testOwnHashMap.length;
         //then
-        Assertions.assertEquals(true, testAddResult);
+        Assertions.assertEquals(3, testHashMapSize);
     }
 
     @Test
-    void shouldReturnTrueIfMapContainsKey(String testKey) {
+    void shouldReturnTrueIfMapContainsKey() {
         //given
-        testKey = "testKey";
+        OwnHashMap testOwnHashMap = new OwnHashMap();
+        testOwnHashMap.put("1", "Basia");
+        testOwnHashMap.put("2", "Cebula");
+        testOwnHashMap.put("3", "Szczypior");
+        String testKey = "2";
         //when
         boolean testContainsKey = testOwnHashMap.containsKey(testKey);
         //then
-        Assertions.assertEquals(false, testContainsKey);
+        Assertions.assertEquals(true, testContainsKey);
     }
 
     @Test
-    void shouldReturnTrueIfMapContainsValue(String testValue) {
+    void shouldReturnTrueIfMapContainsValue() {
         //given
-        testValue = "testValue";
+        OwnHashMap testOwnHashMap = new OwnHashMap();
+        testOwnHashMap.put("1", "Basia");
+        testOwnHashMap.put("2", "Cebula");
+        testOwnHashMap.put("3", "Szczypior");
+        String testValue = "Cebula";
         //when
         boolean testContainsValue = testOwnHashMap.containsValue(testValue);
         //then
-        Assertions.assertEquals(false, testContainsValue);
+        Assertions.assertEquals(true, testContainsValue);
     }
 
     @Test
-    void shouldReturnValueOfRemovedKey(String testKey) {
+    void shouldReturnValueOfRemovedKeyAndAmountOfElementsInTheMap() {
         //given
-        testKey = "testKey";
+        OwnHashMap testOwnHashMap = new OwnHashMap();
+        testOwnHashMap.put("1", "Basia");
+        testOwnHashMap.put("2", "Cebula");
+        testOwnHashMap.put("3", "Szczypior");
+        String testKey = "1";
         //when
         String testRemoveValue = testOwnHashMap.remove(testKey);
+        int testMapLength = testOwnHashMap.length;
         //then
-        Assertions.assertEquals("testValue", testRemoveValue);
+        Assertions.assertEquals("Basia", testRemoveValue);
+        Assertions.assertEquals(2, testMapLength);
     }
 
     @Test
-    void shouldReturnValueOfProvidedKey(String testKey) {
+    void shouldReturnValueOfProvidedKey() {
         //given
-        testKey = "testKey";
+        OwnHashMap testOwnHashMap = new OwnHashMap();
+        testOwnHashMap.put("1", "Basia");
+        testOwnHashMap.put("2", "Cebula");
+        testOwnHashMap.put("3", "Szczypior");
+        String testKey = "1";
         //when
         String testGetValue = testOwnHashMap.get(testKey);
         //then
-        Assertions.assertEquals("testValue", testGetValue);
+        Assertions.assertEquals("Basia", testGetValue);
     }
 }

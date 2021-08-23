@@ -13,7 +13,7 @@ public class OwnHashMap implements OwnMap {
         System.out.println(ownHashMap.get("1"));
         System.out.println(ownHashMap.get("3"));
         System.out.println(ownHashMap.get("8"));
-        System.out.println(ownHashMap.remove("3"));
+        System.out.println(ownHashMap.remove("2"));
         System.out.println(ownHashMap.containsKey("9"));
         System.out.println(ownHashMap.containsValue("Basia"));
     }
@@ -32,6 +32,7 @@ public class OwnHashMap implements OwnMap {
 
     private Node temp;
     private List<Node> hashMap;
+    public int length;
 
     public OwnHashMap() {
         this.hashMap = new ArrayList<Node>();
@@ -51,6 +52,7 @@ public class OwnHashMap implements OwnMap {
             }
         }
         hashMap.add(temp);
+        length++;
         return putResult;
     }
 
@@ -80,13 +82,18 @@ public class OwnHashMap implements OwnMap {
 
     @Override
     public String remove(String key) {
+        String removedValue = "";
         for (int i = 0; i < this.hashMap.size(); i++) {
             Node temp = hashMap.get(i);
-            if (containsKey(key)) {
+            if (key == temp.key) {
+                removedValue = temp.value;
                 hashMap.remove(i);
+                length--;
+                return removedValue;
             }
         }
-        return "entry " + temp.value + " removed.";
+        return removedValue;
+
     }
 
     @Override
