@@ -1,11 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class OwnHashMap implements OwnMap {
 
     public static void main(String[] args) {
         OwnHashMap ownHashMap = new OwnHashMap();
-        ownHashMap.put("1", "Basia");
         ownHashMap.put("2", "Cebula");
         ownHashMap.put("3", "Szczypior");
         System.out.println(ownHashMap.get("3"));
@@ -14,54 +10,36 @@ public class OwnHashMap implements OwnMap {
         System.out.println(ownHashMap.get("3"));
         System.out.println(ownHashMap.get("8"));
         System.out.println(ownHashMap.remove("2"));
-        System.out.println(ownHashMap.containsKey("9"));
+//        System.out.println(ownHashMap.containsKey("9"));
         System.out.println(ownHashMap.containsValue("Basia"));
     }
 
-    class Node {
 
-        String key;
-        String value;
-
-        public void insert(String key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-
-    }
-
-    private Node temp;
-    private List<Node> hashMap;
-    public int length;
+    public String[] hashMapKey;
+    public String[] hashMapValue;
+    public int arrayLength=0;
 
     public OwnHashMap() {
-        this.hashMap = new ArrayList<Node>();
+    this.arrayLength = 0;
+    this.hashMapKey = new String[arrayLength];
+    this.hashMapValue = new String[arrayLength];
     }
 
     @Override
     public boolean put(String key, String value) {
         boolean putResult = false;
-        this.temp = new Node();
-        temp.insert(key, value);
-        for (int i = 0; i < hashMap.size(); i++) {
-            Node temp2 = hashMap.get(i);
-            if (temp2.key.equals(key)) {
-                hashMap.remove(i);
-                putResult = true;
-                break;
-            }
-        }
-        hashMap.add(temp);
-        length++;
+        arrayLength++;
+        hashMapKey[arrayLength] = key;
+        hashMapValue[arrayLength] = value;
+        putResult = true;
         return putResult;
     }
 
     @Override
     public boolean containsKey(String key) {
         boolean containsKey = false;
-        for (int i = 0; i < this.hashMap.size(); i++) {
-            Node temp = hashMap.get(i);
-            if (key == temp.key) {
+        for (int i = 0; i < hashMapKey.length; i++) {
+            if (hashMapKey[i] == key) {
                 containsKey = true;
             }
         }
@@ -71,9 +49,8 @@ public class OwnHashMap implements OwnMap {
     @Override
     public boolean containsValue(Object value) {
         boolean containsValue = false;
-        for (int i = 0; i < this.hashMap.size(); i++){
-            Node temp = hashMap.get(i);
-            if (value == temp.value){
+        for (int i = 0; i < hashMapValue.length; i++) {
+            if (hashMapValue[i] == value) {
                 containsValue = true;
             }
         }
@@ -83,27 +60,27 @@ public class OwnHashMap implements OwnMap {
     @Override
     public String remove(String key) {
         String removedValue = "";
-        for (int i = 0; i < this.hashMap.size(); i++) {
-            Node temp = hashMap.get(i);
-            if (key == temp.key) {
-                removedValue = temp.value;
-                hashMap.remove(i);
-                length--;
+        for (int i = 0; i < hashMapKey.length; i++) {
+            if (hashMapKey[i] == key) {
+                for (int z = 0; z > hashMapKey.length - 1; z++) {
+                    hashMapKey[z] = hashMapKey[i + z];
+                    hashMapValue[z] = hashMapValue[i + z];
+                }
                 return removedValue;
             }
         }
         return removedValue;
-
     }
 
     @Override
     public String get(String key) {
-        for (int i = 0; i < this.hashMap.size(); i++) {
-            Node temp = hashMap.get(i);
-            if (key == temp.key) {
-                return temp.value;
+        String valueToDisplay = "";
+        for (int i = 0; i < hashMapKey.length; i++) {
+            if (hashMapKey[i] == key) {
+                valueToDisplay = hashMapValue[i];
+                return valueToDisplay;
             }
         }
-        return null;
+        return valueToDisplay;
     }
 }
