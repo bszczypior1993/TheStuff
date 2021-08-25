@@ -5,7 +5,7 @@ public class TrainingProgressCalculator {
     private final int calculatePulseRating;
 
     public static void main(String[] args) {
-        System.out.println(TrainingProgressCalculator.calculateTrainingQuality(12, 12, 500));
+        System.out.println(TrainingProgressCalculator.calculateTrainingQuality(70, 1, 1));
     }
 
 
@@ -62,6 +62,9 @@ public class TrainingProgressCalculator {
         return pulseRating;
     }
 
+    public static String calculateTrainingQuality(int trainingLengthMinutes){
+        return calculateTrainingQuality(trainingLengthMinutes,1,1);
+    }
 
     public static String calculateTrainingQuality(int trainingLengthMinutes, int caloriesBurnt, int pulse) {
         double trainingQualityMean;
