@@ -1,3 +1,5 @@
+
+
 public class OwnHashMap implements OwnMap {
 
     public static void main(String[] args) {
@@ -10,17 +12,15 @@ public class OwnHashMap implements OwnMap {
         System.out.println(ownHashMap.get("3"));
         System.out.println(ownHashMap.get("8"));
         System.out.println(ownHashMap.remove("2"));
-//        System.out.println(ownHashMap.containsKey("9"));
         System.out.println(ownHashMap.containsValue("Basia"));
     }
-
 
     public String[] hashMapKey;
     public String[] hashMapValue;
     public int arrayLength=0;
 
     public OwnHashMap() {
-    this.arrayLength = 0;
+    this.arrayLength = arrayLength;
     this.hashMapKey = new String[arrayLength];
     this.hashMapValue = new String[arrayLength];
     }
@@ -28,9 +28,17 @@ public class OwnHashMap implements OwnMap {
     @Override
     public boolean put(String key, String value) {
         boolean putResult = false;
+        hashMapKey = new String[10];
+        hashMapValue = new String[10];
+        String[]copy=new String[arrayLength+1];
+        String[]copy2=new String[arrayLength+1];
+        for (int i = 0; i < arrayLength;i++){
+            copy[i] = hashMapKey[i];
+            copy2[i] = hashMapValue[i];
+        }
         arrayLength++;
-        hashMapKey[arrayLength] = key;
-        hashMapValue[arrayLength] = value;
+        hashMapKey[arrayLength-1] = key;
+        hashMapValue[arrayLength-1] = value;
         putResult = true;
         return putResult;
     }
