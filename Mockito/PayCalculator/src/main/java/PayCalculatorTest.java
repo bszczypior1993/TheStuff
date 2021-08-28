@@ -10,9 +10,9 @@ class PayCalculatorTest {
         SaturdayBonus mockedSaturdayBonus = Mockito.mock(SaturdayBonus.class);
         Mockito.when(mockedBasicSalary.returnBasicSalary()).thenReturn(2);
         Mockito.when(mockedSaturdayBonus.returnSaturdayBonus()).thenReturn(1);
-        PayCalculator testPayCalculator = new PayCalculator(mockedBasicSalary, 1, mockedSaturdayBonus, 50);
+        PayCalculator testPayCalculator = new PayCalculator(mockedBasicSalary, 1, mockedSaturdayBonus);
         //when
-        int totalSalary = testPayCalculator.salaryCalculator();
+        int totalSalary = testPayCalculator.calculateSalary(50);
         //then
         Assertions.assertEquals(totalSalary, 53);
     }
