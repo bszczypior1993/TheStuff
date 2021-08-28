@@ -5,89 +5,134 @@ public class TrainingProgressCalculator {
     private final int calculatePulseRating;
 
     public static void main(String[] args) {
-        System.out.println(TrainingProgressCalculator.calculateTrainingQuality(70, 1, 1));
+        System.out.println(TrainingProgressCalculator.calculateTrainingQuality(180,30,2));
     }
 
 
-
-    public TrainingProgressCalculator (int trainingLengthMinutes, int caloriesBurnt, int calculatePulseRating){
+    public TrainingProgressCalculator(int trainingLengthMinutes, int caloriesBurnt, int calculatePulseRating) {
         this.trainingLengthMinutes = trainingLengthMinutes;
         this.caloriesBurnt = caloriesBurnt;
         this.calculatePulseRating = calculatePulseRating;
     }
 
+    public enum LengthRating {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    static LengthRating lengthRating;
 
-    public static int calculateLengthRating(int trainingLengthMinutes) {
-        int lengthRating = 0;
-        if (trainingLengthMinutes < 30) {
-            lengthRating = 1;
-            return lengthRating;
+    public enum CalorieRating{
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    static CalorieRating calorieRating;
+
+    public enum PulseRating {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    static PulseRating pulseRating;
+
+    public enum TrainingQuality{
+        LOW,
+        GOOD,
+        VERY_GOOD,
+        EXCELLENT
+    }
+static TrainingQuality trainingQuality;
+
+    public static LengthRating calculateLengthRating(int trainingLengthMinutes) {
+                if (trainingLengthMinutes < 30) {
+            return lengthRating.LOW;
         } else if (30 <= trainingLengthMinutes && trainingLengthMinutes <= 60) {
-            lengthRating = 2;
-            return lengthRating;
-        } else if (trainingLengthMinutes > 60) {
-            lengthRating = 3;
-            return lengthRating;
+            return lengthRating.MEDIUM;
+        } else if (trainingLengthMinutes > 60) {;
+            return lengthRating.HIGH;
         }
-        return lengthRating;
+        return null;
     }
 
-    public static int calculateCalorieRating(int caloriesBurnt) {
-        int calorieRating = 0;
+    public static CalorieRating calculateCalorieRating(int caloriesBurnt) {
         if (caloriesBurnt <= 300) {
-            calorieRating = 1;
-            return calorieRating;
+            return calorieRating.LOW;
         } else if (300 < caloriesBurnt && caloriesBurnt < 400) {
-            calorieRating = 2;
-            return calorieRating;
+            return calorieRating.MEDIUM;
         } else if (caloriesBurnt >= 400) {
-            calorieRating = 3;
-            return calorieRating;
+            return calorieRating.HIGH;
         }
-        return calorieRating;
+        return null;
     }
 
-    public static int calculatePulseRating(int pulse) {
-        int pulseRating = 0;
+    public static PulseRating calculatePulseRating(int pulse) {
         if (pulse < 160) {
-            pulseRating = 3;
-            return pulseRating;
+            return pulseRating.HIGH;
         } else if (pulse >= 160 && pulse <= 175) {
-            pulseRating = 2;
-            return pulseRating;
+            return pulseRating.MEDIUM;
         } else if (pulse > 175) {
-            pulseRating = 1;
-            return pulseRating;
+            return pulseRating.LOW;
         }
-        return pulseRating;
+        return null;
     }
 
-    public static String calculateTrainingQuality(int trainingLengthMinutes){
-        return calculateTrainingQuality(trainingLengthMinutes,1,1);
-    }
+//    public static TrainingQuality calculateTrainingQuality(int trainingLengthMinutes) {
+//        return calculateTrainingQuality(trainingLengthMinutes, 1, 1);
+//    }
 
-    public static String calculateTrainingQuality(int trainingLengthMinutes, int caloriesBurnt, int pulse) {
+    public static TrainingQuality calculateTrainingQuality(int trainingLengthMinutes, int caloriesBurnt, int pulse) {
         double trainingQualityMean;
-        String trainingAssessment = "";
         calculateLengthRating(trainingLengthMinutes);
         calculateCalorieRating(caloriesBurnt);
         calculatePulseRating(pulse);
+        int lengthRate=0;
+        int calorieRate;
+        int pulseRate;
 
-        trainingQualityMean = (((calculateLengthRating(trainingLengthMinutes) * 1) + (calculateCalorieRating(caloriesBurnt) * 2) + (calculatePulseRating(pulse) * 3)) / 6);
+        switch (lengthRating){
+            case LOW:
+                return lengthRate = 1;
+            case MEDIUM:
+                return lengthRate = 2;
+            case HIGH:
+                return lengthRate = 3;
+        }
+        switch (calorieRating){
+            case LOW:
+                calorieRate = 1;
+                break;
+            case MEDIUM:
+                calorieRate = 2;
+                break;
+            case HIGH:
+                calorieRate = 3;
+                break;
+        }
+
+        switch (pulseRating){
+            case LOW:
+                pulseRate = 1;
+                break;
+            case MEDIUM:
+                pulseRate = 2;
+                break;
+            case HIGH:
+                pulseRate = 3;
+                break;
+        }
+
+        trainingQualityMean = (((lengthRate * 1) + (calorieRate * 2) + (pulseRate * 3)) / 6);
 
         if (trainingQualityMean < 1.2) {
-            trainingAssessment = "Low";
-            return trainingAssessment;
+            return trainingQuality.LOW;
         } else if ((1.2 <= trainingQualityMean) && (trainingQualityMean < 2)) {
-            trainingAssessment = "Good";
-            return trainingAssessment;
+            return trainingQuality.GOOD;
         } else if ((2 <= trainingQualityMean) && (trainingQualityMean < 3)) {
-            trainingAssessment = "Very good";
-            return trainingAssessment;
+            return trainingQuality.VERY_GOOD;
         } else if (trainingQualityMean == 3) {
-            trainingAssessment = "Excellent";
-            return trainingAssessment;
+            return trainingQuality.EXCELLENT;
         }
-        return trainingAssessment;
+        return null;
     }
 }
